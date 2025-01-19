@@ -11,6 +11,21 @@ function App() {
   const [todo, settodo] = useState("")
 const [showFinished, setshowFinished] = useState("true")
 
+const fetchData = async () => {
+    try {
+      const payload = {
+
+        email: "m@gmail.com",
+        password: "1"
+        
+      }
+      const response = await axios.post("/api/users/login", payload);
+    } catch (error) {
+      console.log("error occured",error)
+    }
+}
+
+
   const saveTols = () => {
     localStorage.setItem("Todos", JSON.stringify(Todos))
   }
@@ -26,7 +41,7 @@ const [showFinished, setshowFinished] = useState("true")
 
 
   const handleadd = () => {
-
+    fetchData();
     if (todo.length > 3) {
       setTodos([...Todos, { id: uuidv4(), todo, iscompleted: false }])
       console.log(Todos)
